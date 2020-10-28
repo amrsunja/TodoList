@@ -1,0 +1,40 @@
+{% extends 'todolist/base.html' %}
+
+{% block title %}
+    Мои задачи
+{% endblock %}
+
+{% block content %}
+    <div style="text-align: center; margin-top: 50px;">
+        <form method="POST" action="/" style="font-size: 20px; border-radius: 10px;">
+            {% csrf_token %}
+            {{ form.title }}
+            <input type="submit" name='Create Task' value="СДЕЛАТЬ" style="padding: 1px 30px;">
+        </form>
+    </div>
+    <div style="text-align: center; padding: 100px 0;">
+        {% for task in tasks %}
+            
+            <div style="display: inline-flex; padding: 10px 5px;">
+                <div class="card" style="width: 18rem; display: inline-block;">
+                    <div class="card-body">
+                        <h5 class="card-title">~ЗАДАЧА~</h5>
+                        {% if task.complete == True %}
+                        <strike><p class="card-text">{{task}}</p></strike>
+                        {% else %}
+                        <p class="card-text">{{task}}</p>
+                        {% endif %}
+                        <a href="{% url 'delete_url' task.id %}" class="card-link">CДЕЛАЛ</a>
+                        <a href="{% url 'update_url' task.id %}" class="card-link">ИЗМЕНИТЬ</a>
+                        <div class="card-footer text-muted">
+                            {{task.created}}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        
+        {% endfor %}
+    </div>
+
+{% endblock %}

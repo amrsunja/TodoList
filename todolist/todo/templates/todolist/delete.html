@@ -1,0 +1,16 @@
+{% extends 'todolist/base.html' %}
+
+{% block title %}
+    Изменить
+{% endblock %}
+
+{% block content %}
+    <h1>Уверен что ты завершил задачу '{{ item }}'?</h1>
+    <a href="{% url 'index_url' %}">ОТМЕНА</a>
+
+    <form action="" method='POST'>
+        {% csrf_token %}
+        <input type="submit" name="confirm">
+    </form>
+
+{% endblock %}

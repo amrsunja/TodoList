@@ -1,0 +1,16 @@
+{% extends 'todolist/base.html' %}
+
+{% block title %}
+    Изменить
+{% endblock %}
+
+{% block content %}
+    <h3>Изменить</h3>
+    {{task.title}}
+    <form action="" method='POST'>
+        {% csrf_token %}
+
+        {{form}}
+        <input type="submit" name="Update Task" value="ИЗМЕНИТЬ">
+    </form>
+{% endblock %}
